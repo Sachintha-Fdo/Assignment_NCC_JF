@@ -81,20 +81,38 @@ export const register = catchAsyncErrors(async (req, res, next) => {
 
 export const login = catchAsyncErrors(async (req, res, next) => {
   const { role, email, password } = req.body;
+  // console.log("req data");
+  
+  // console.log(role);
+  // console.log(email);
+  // console.log(password);
+  // console.log("req data");
+
   if (!role || !email || !password) {
     return next(
       new ErrorHandler("Email, password and role are required.", 400)
     );
   }
-  const user = await User.findOne({ email }).select("+password");
+  const user = await User.findOne({ email }).select("password");
+  const user1 = await User.findOne({ email }).select("role");
+  console.log("user detailed from DB");
+  console.log(user1);
+  
   if (!user) {
-    return next(new ErrorHandler("Invalid email or password.", 400));
+    // console.log(email)
+    return next(new ErrorHandler("Invalid email or password.From Email", 400));
   }
   const isPasswordMatched = await user.comparePassword(password);
   if (!isPasswordMatched) {
-    return next(new ErrorHandler("Invalid email or password.", 400));
+    
+    return next(new ErrorHandler("Invalid email or password.From Password", 400));
   }
-  if (user.role !== role) {
+  console.log("user Roled");
+  console.log(user1.role);
+  console.log("-------------");
+
+  if (user1.role !== role) {
+    console.log("not match")
     return next(new ErrorHandler("Invalid user role.", 400));
   }
   sendToken(user, 200, res, "User logged in successfully.");
@@ -174,7 +192,7 @@ export const updateProfile = catchAsyncErrors(async (req, res, next) => {
 });
 
 export const updatePassword = catchAsyncErrors(async (req, res, next) => {
-  const user = await User.findById(req.user.id).select("+password");
+  const user = await User.findById(req.user.id).select("password");
 
   const isPasswordMatched = await user.comparePassword(req.body.oldPassword);
 

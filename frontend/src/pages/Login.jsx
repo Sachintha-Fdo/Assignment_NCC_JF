@@ -20,7 +20,7 @@ const Login = () => {
   const navigateTo = useNavigate();
 
   const handleLogin = (e) => {
-    console.log("bgshdsdfdffdfgff");
+    console.log("login called");
     
     e.preventDefault();
     const formData = new FormData();
