@@ -40,26 +40,26 @@ const Jobs = () => {
 
   const cities = [
     "All",
-    "Karachi",
-    "Lahore",
-    "Islamabad",
-    "Rawalpindi",
-    "Faisalabad",
-    "Multan",
-    "Hyderabad",
-    "Quetta",
-    "Peshawar",
-    "Sialkot",
-    "Gujranwala",
-    "Sargodha",
-    "Bahawalpur",
-    "Sukkur",
-    "Mardan",
-    "Mingora",
-    "Sheikhupura",
-    "Mandi Bahauddin",
-    "Larkana",
-    "Nawabshah",
+    "Colombo",
+    "Gampaha",
+    "Kandy",
+    "Rathnapura",
+    "Kalutara",
+    "Badulla",
+    "Bandarawela",
+    "Matara",
+    "Galle",
+    "Hambanthota",
+    "Kilinochchi",
+    "Vaunia",
+    "Puttalam",
+    "Batticaloa",
+    "Chilaw",
+    "Monaragala",
+    "Nuwara Eliya",
+    "Mannar",
+    "Anuradhapura",
+    "Polonnaruwa",
   ];
 
   const nichesArray = [
@@ -88,7 +88,7 @@ const Jobs = () => {
 
   return (
     <>
-      {loading ? (
+      {false ? (
         <Spinner />
       ) : (
         <section className="jobs">
