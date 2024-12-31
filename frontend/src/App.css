@@ -878,7 +878,7 @@ footer div ul a span {
   color: #111;
 }
 .account .component_header p:last-child span {
-  color: #dfdf07;
+  color: #708bee;
 }
 
 .account .container {
@@ -910,11 +910,11 @@ footer div ul a span {
   background: transparent;
 }
 .account .container .sidebar .sidebar_links button:hover {
-  color: #dfdf07;
+  color: #708bee;
   transition: 0.3s;
 }
 .account .container .sidebar .sidebar_links .active {
-  color: #dfdf07;
+  color: #708bee;
 }
 .account .container .banner {
   width: 100%;
@@ -940,7 +940,7 @@ footer div ul a span {
 .account_components h3 {
   font-size: 30px;
   font-weight: 600;
-  color: #dfdf07;
+  color: #708bee;
 }
 .account_components div:first-child {
   font-size: 30px;

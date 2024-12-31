@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+    container_name: backend-service
+    ports:
+      - "4000:4000" 
+    volumes:
+      - ./backend:/usr/src/app
+    
+    environment:
+      - CLOUDINARY_CLOUD_NAME=deol3dlnt
+      - CLOUDINARY_API_KEY=313571762391458
+      - CLOUDINARY_API_SECRET=Ct1btcutm9MCuSSQSSMf8RhQnds
+      - PORT=4000
+    command: npm start
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: frontend-service
+    ports:
+      - "80:80"
+    volumes:
+      - ./frontend:/usr/src/app
+      - /usr/src/app/node_modules
+    # environment:
+    #   - NODE_ENV=production
