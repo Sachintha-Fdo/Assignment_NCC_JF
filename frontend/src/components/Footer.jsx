@@ -32,15 +32,15 @@ const Footer = () => {
         <div>
           <h4>Quick Links</h4>
           <ul>
-            <li to={"/"}>
+            <li to={"/"} onClick={() => setShow(!show)}>
               <Link>Home</Link>
             </li>
-            <li to={"/jobs"}>
+            <li to={"/jobs"} onClick={() => setShow(!show)}>
               <Link>Jobs</Link>
             </li>
             {isAuthenticated && (
               <li>
-                <Link to={"/dashboard"}>Dashboard</Link>
+                <Link to={"/dashboard"} onClick={() => setShow(!show)}>Dashboard</Link>
               </li>
             )}
           </ul>
