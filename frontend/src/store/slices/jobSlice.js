@@ -110,7 +110,7 @@ export const fetchJobs =
 
       console.log("dhfhjfjfjjfjfjf")
       dispatch(jobSlice.actions.requestForAllJobs());
-      let link = "http://localhost:4000/api/v1/job/getall?";
+      let link = "/api/v1/job/getall?";
       let queryParams = [];
       if (searchKeyword) {
         queryParams.push(`searchKeyword=${searchKeyword}`);
@@ -147,7 +147,9 @@ export const fetchJobs =
       /***************************************************/
 
       link += queryParams.join("&");
-      const response = await axios.get(link, { withCredentials: true });
+      console.log(link);
+      
+      const response = await axios.get("/api/v1/job/getall?", { withCredentials: true });
       dispatch(jobSlice.actions.successForAllJobs(response.data.jobs));
       dispatch(jobSlice.actions.clearAllErrors());
     } catch (error) {
@@ -159,7 +161,7 @@ export const fetchSingleJob = (jobId) => async (dispatch) => {
   dispatch(jobSlice.actions.requestForSingleJob());
   try {
     const response = await axios.get(
-      `http://localhost:4000/api/v1/job/get/${jobId}`,
+      `/api/v1/job/get/${jobId}`,
       { withCredentials: true }
     );
     dispatch(jobSlice.actions.successForSingleJob(response.data.job));
@@ -173,7 +175,7 @@ export const postJob = (data) => async (dispatch) => {
   dispatch(jobSlice.actions.requestForPostJob());
   try {
     const response = await axios.post(
-      `http://localhost:4000/api/v1/job/post`,
+      `/api/v1/job/post`,
       data,
       { withCredentials: true, headers: { "Content-Type": "application/json" } }
     );
@@ -188,7 +190,7 @@ export const getMyJobs = () => async (dispatch) => {
   dispatch(jobSlice.actions.requestForMyJobs());
   try {
     const response = await axios.get(
-      `http://localhost:4000/api/v1/job/getmyjobs`,
+      `/api/v1/job/getmyjobs`,
       { withCredentials: true }
     );
     dispatch(jobSlice.actions.successForMyJobs(response.data.myJobs));
@@ -202,7 +204,7 @@ export const deleteJob = (id) => async (dispatch) => {
   dispatch(jobSlice.actions.requestForDeleteJob());
   try {
     const response = await axios.delete(
-      `http://localhost:4000/api/v1/job/delete/${id}`,
+      `/api/v1/job/delete/${id}`,
       { withCredentials: true }
     );
     dispatch(jobSlice.actions.successForDeleteJob(response.data.message));

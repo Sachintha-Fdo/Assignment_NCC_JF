@@ -1,0 +1,24 @@
+version: '3.9'
+
+services:
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "4000:4000"
+    environment:
+      - NODE_ENV=production
+  
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "5173:80" # React app will be served on port 3000
+    depends_on:
+      - backend
+    environment:
+      - VITE_API_BASE_URL=http://backend:4000 # Use the service name 'backend' as the hostname
+    
+networks:
+  default:
+    driver: bridge

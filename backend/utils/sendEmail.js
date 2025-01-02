@@ -16,6 +16,7 @@ export const sendEmail = async ({ email, subject, message }) => {
   });
 
   // console.log(service)
+  
 
   const options = {
     from: process.env.SMTP_MAIL,
