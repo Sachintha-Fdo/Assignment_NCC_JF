@@ -1,24 +1,45 @@
-version: '3.9'
+version: '3'
 
-services:
+services: 
+
   backend:
-    build:
+    build: 
       context: ./backend
-    ports:
+    container_name: backend
+    networks: 
+      - node-network
+    ports: 
       - "4000:4000"
-    environment:
-      - NODE_ENV=production
-  
+    command: npm run start
+
   frontend:
-    build:
+    build: 
       context: ./frontend
-    ports:
-      - "5173:80" # React app will be served on port 3000
+    container_name: frontend
+    networks: 
+      - node-network
+    tty: true
     depends_on:
-      - backend
-    environment:
-      - VITE_API_BASE_URL=http://backend:4000 # Use the service name 'backend' as the hostname
-    
-networks:
-  default:
-    driver: bridge
+       - backend
+    ports: 
+      - "5173:5173"
+    command: npm run dev
+
+  nginx:
+    build: 
+      context: ./nginx
+    container_name: nginx
+    restart: always
+    tty: true
+    ports: 
+      - "8000:80"
+    networks: 
+      - node-network
+    depends_on:
+       - backend
+       - frontend
+
+  
+networks: 
+  node-network:
+    driver: bridge    
